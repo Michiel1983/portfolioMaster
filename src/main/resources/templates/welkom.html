@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Portfolio Manager</title>
+</head>
+<body>
+<div align="center">
+    <h1>Portfolio Manager</h1>
+    <a href="new">Maak een nieuwe categorie</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Categorie Id</th>
+            <th>Naam</th>
+            <th>Acties</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="categorie : ${listCategorien}">
+            <td th:text="${categorie.categorieId}">Categorie Id</td>
+            <td th:text="${categorie.name}">Naam</td>
+            <td>
+                <a th:href="@{'/criterium/' + ${categorie.categorieId}}">Maak criteria</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a th:href="@{'/doel/' + ${categorie.categorieId}}">Maak een doel</a>
+
+                <a th:href="@{'/beoordeling/' + ${categorie.categorieId}}">Schrijf een beoordeling</a>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="box"></div>
+</body>
+</html>

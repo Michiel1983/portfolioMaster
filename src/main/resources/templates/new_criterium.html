@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Maak een nieuw criterium</title>
+</head>
+<body>
+<div>
+    <h1>Voor de categorie ... kun je jezelf punten geven</h1>
+    <p>0 punten = onvoldoende</p>
+    <p>1 punt = matig</p>
+    <p>2 punten = voldoende</p>
+    <p>3 punten = goed</p>
+</div>
+    <br>
+<div>
+    <form action="#" th:action="@{/saveCriterium}" th:object="${criterium}" method="post">
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>Criterium cijfer:</td>
+                <td><input type="text" th:field="*{cijfer}" /></td>
+            </tr>
+            <tr>
+                <td>Criterium beschrijving:</td>
+                <td><input type="text" th:field="*{beschrijving}" /></td>
+            </tr>
+            <td colspan="2"><button type="submit">Save</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div>
+    <h1>Schrijf in de tabel per aantal punten je criterium</h1>
+    <br/>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Aantal punten</th>
+            <th>Criterium beschrijving</th>
+            <th>Acties</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="criterium : ${listCriteria}">
+            <td th:text="${criterium.cijfer}">Criterium cijfer</td>
+            <td th:text="${criterium.bechrijving}">Naam</td>
+            <td>
+                <a th:href="@{'/criterium/' + ${categorie.categorieId}}">Maak criteria</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a th:href="@{'/doel/' + ${categorie.categorieId}}">Maak een doel</a>
+
+                <a th:href="@{'/beoordeling/' + ${categorie.categorieId}}">Schrijf een beoordeling</a>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
